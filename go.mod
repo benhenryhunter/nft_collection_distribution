@@ -1,4 +1,4 @@
-module github.com/dickmanben/nft_holder_aggregator
+module github.com/dickmanben/nft_collection_distribution
 
 go 1.17
 
