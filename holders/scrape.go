@@ -1,6 +1,8 @@
 package main
 
 import (
+	"encoding/json"
+	"io/ioutil"
 	"log"
 	"math/big"
 	"os"
@@ -64,4 +66,60 @@ func AggregateContractOwners(address string) map[string]interface{} {
 		}
 	}
 	return addressTotals
+}
+
+//
+// ownersToMap reads the scraped JSON file and groups
+// addresses by how many they hold
+//
+func ownersToMap(fileName string) map[int]int {
+	file, err := os.Open(fileName)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+	b, err := ioutil.ReadAll(file)
+	if err != nil {
+		panic(err)
+	}
+	ownerTotals := map[string]int{}
+	if err := json.Unmarshal(b, &ownerTotals); err != nil {
+		panic(err)
+	}
+
+	groupedTotals := map[int]int{}
+
+	for _, total := range ownerTotals {
+		if _, ok := groupedTotals[total]; !ok {
+			groupedTotals[total] = 1
+		} else {
+			groupedTotals[total] = groupedTotals[total] + 1
+		}
+	}
+
+	groupedBytes, err := json.MarshalIndent(groupedTotals, "", " ")
+	if err != nil {
+		panic(err)
+	}
+	err = ioutil.WriteFile("groupedOwners.json", groupedBytes, 0644)
+	if err != nil {
+		panic(err)
+	}
+	return groupedTotals
+}
+
+//
+// scrapeOwners gets the owner totals and outputs
+// them to a json file
+//
+func scrapeOwners(address string) {
+	aggregatedOwners := AggregateContractOwners(address)
+	b, err := json.MarshalIndent(aggregatedOwners, "", " ")
+	if err != nil {
+		panic(err)
+	}
+	err = ioutil.WriteFile("ownerMap.json", b, 0644)
+	if err != nil {
+		panic(err)
+	}
 }
