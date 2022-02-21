@@ -60,6 +60,9 @@ func ScrapeStakers(address string) (map[int]int, error) {
 	groupedTotals := map[int]int{}
 
 	for _, total := range aggregatedOwners {
+		if total == 0 {
+			continue
+		}
 		if _, ok := groupedTotals[total]; !ok {
 			groupedTotals[total] = 1
 		} else {
