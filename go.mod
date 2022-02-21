@@ -3,7 +3,7 @@ module github.com/dickmanben/nft_collection_distribution
 go 1.17
 
 require (
-	github.com/dickmanben/sol_go v0.0.1
+	github.com/dickmanben/sol_go v0.0.2
 	github.com/ethereum/go-ethereum v1.10.15
 	github.com/subosito/gotenv v1.2.0
 )
@@ -26,4 +26,4 @@ require (
 	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce // indirect
 )
 
-replace github.com/dickmanben/sol_go => ../sol_go
+// replace github.com/dickmanben/sol_go => ../sol_go
