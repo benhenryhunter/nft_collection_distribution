@@ -17,5 +17,5 @@ func init() {
 func main() {
 	// ScrapeStakers("0x69a96059cc35da280af8005d165da1d040297696")
 	// groupedStakers := ownersToMap("groupedStakers.json")
-
+	// spew.Dump(staking.ScrapeStakers())
 }

@@ -3,6 +3,7 @@ module github.com/dickmanben/nft_collection_distribution
 go 1.17
 
 require (
+	github.com/davecgh/go-spew v1.1.1
 	github.com/dickmanben/sol_go v0.0.2
 	github.com/ethereum/go-ethereum v1.10.15
 	github.com/subosito/gotenv v1.2.0
@@ -11,7 +12,6 @@ require (
 require (
 	github.com/StackExchange/wmi v0.0.0-20180116203802-5d049714c4a6 // indirect
 	github.com/btcsuite/btcd v0.20.1-beta // indirect
-	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/deckarep/golang-set v0.0.0-20180603214616-504e848d77ea // indirect
 	github.com/go-ole/go-ole v1.2.1 // indirect
 	github.com/go-stack/stack v1.8.0 // indirect
